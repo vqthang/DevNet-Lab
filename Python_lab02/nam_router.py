@@ -1,7 +1,7 @@
 import pexpect
 
-router = {'name': 'R1',
-          'id': '',
+router = {'name': 'R4',
+          'ip': '10.0.137.69',
           'username': 'cisco',
           'password': 'cisco'}
 
@@ -9,7 +9,7 @@ def connect(router_ip, router_user, router_pw):
     print ('You are using function to connecting to PNETlab', router_ip)
     session = pexpect.spawn('telnet ' + router_ip, timeout=20)
     session.sendline('\r\n')
-    result = session.expect(['Username:', pexpect.TIMEOUT]) #check for failure
+    result = session.expect(['Username:', pexpect.TIMEOUT])
     if result != 0:
         print ('failure')
         return 0

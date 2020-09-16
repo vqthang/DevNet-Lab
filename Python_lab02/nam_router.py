@@ -5,25 +5,27 @@ router = {'name': 'R4',
           'username': 'cisco',
           'password': 'cisco'}
 
+
 def connect(router_ip, router_user, router_pw):
-    print ('You are using function to connecting to PNETlab', router_ip)
+    print('You are using function to connecting to PNETlab', router_ip)
     session = pexpect.spawn('telnet ' + router_ip, timeout=20)
     session.sendline('\r\n')
     result = session.expect(['Username:', pexpect.TIMEOUT])
     if result != 0:
         print ('failure')
         return 0
-    print ('Connecting to PNETlab : username: ' + router_user)
+    print('Connecting to PNETlab : username: ' + router_user)
     session.sendline(router_user)
 
     result = session.expect(['Password:', pexpect.TIMEOUT])
     if result != 0:
-        print ('failure')
+        print('failure')
         return 0
-    print ('connecting to PNETlab : Password: ' + router_pw)
+    print('connecting to PNETlab : Password: ' + router_pw)
     session.sendline(router_pw)
     session.expect('>')
     return session
+
 
 def get_router_info(session):
     session.sendline('terminal length 0')
@@ -33,12 +35,13 @@ def get_router_info(session):
     get_inventory_out = session.before
     return get_inventory_out
 
+
 # make a function to print the device info
 def print_device_info (device_info, show_int_output):
-    print ('PNETdevice Name: ', device_info['name'])
-    print ('PNETdevice IP: ',device_info['ip'])
-    print ('PNETdevice Username: ',device_info['username'])
-    print ('PNETdevice Password: ',device_info['password'])
+    print('PNETdevice Name: ', device_info['name'])
+    print('PNETdevice IP: ',device_info['ip'])
+    print('PNETdevice Username: ',device_info['username'])
+    print('PNETdevice Password: ',device_info['password'])
     print('-------------')
     print('Show interface output --- inventory')
     print(show_int_output)

@@ -43,7 +43,6 @@ def print_device_info (device_info, show_int_output):
     print('Show interface output --- inventory')
     print(show_int_output)
 
-# Main program
 
 if __name__ == '__main__':
     session = connect(router['ip'], router['username'], router['password'])

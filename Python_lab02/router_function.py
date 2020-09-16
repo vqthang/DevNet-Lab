@@ -12,7 +12,7 @@ def connect(router_ip, router_user, router_pw):
     session.sendline('\r\n')
     result = session.expect(['Username:', pexpect.TIMEOUT])
     if result != 0:
-        print ('failure')
+        print('failure')
         return 0
     print('Connecting to PNETlab : username: ' + router_user)
     session.sendline(router_user)
@@ -32,16 +32,16 @@ def get_router_info(session):
     session.expect('>')
     session.sendline('show interface summary')
     session.expect('>')
-    get_inventory_out = session.before
-    return get_inventory_out
+    output = session.before
+    return output
 
 
 # make a function to print the device info
-def print_device_info (device_info, show_int_output):
-    print('PNETdevice Name: ', device_info['name'])
-    print('PNETdevice IP: ',device_info['ip'])
-    print('PNETdevice Username: ',device_info['username'])
-    print('PNETdevice Password: ',device_info['password'])
+def print_device_info(device_info, show_int_output):
+    print('PNETdevice Name: {0}'.format(device_info['name']))
+    print('PNETdevice IP: {0}'.format(device_info['ip']))
+    print('PNETdevice Username: {0}'.format(device_info['username']))
+    print('PNETdevice Password: {0}'.format(device_info['password']))
     print('-------------')
     print('Show interface output --- inventory')
     print(show_int_output)

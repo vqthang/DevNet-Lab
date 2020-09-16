@@ -7,6 +7,13 @@ router = {'name': 'R4',
 
 
 def connect(router_ip, router_user, router_pw):
+    """
+    Make a connection to Router
+    :param router_ip: the ip of router
+    :param router_user: the user of router
+    :param router_pw: the password of router
+    :return: session
+    """
     print('You are using function to connecting to PNETlab', router_ip)
     session = pexpect.spawn('telnet ' + router_ip, timeout=20)
     session.sendline('\r\n')
